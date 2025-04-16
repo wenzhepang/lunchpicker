@@ -1,1 +1,49 @@
+# === Node / Vite Frontend ===
+node_modules/
+dist/
+.vite/
+.env
+.env.*.local
+
+# === VS Code Editor ===
 .vscode/
+*.code-workspace
+
+# === macOS 系统垃圾文件 ===
+.DS_Store
+
+# === Python / Flask Backend ===
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.sqlite3
+
+# Ignore instance folder if used for config/db in Flask
+instance/
+*.log
+
+# === Virtual environments ===
+venv/
+env/
+.venv/
+ENV/
+
+# === Frontend build output ===
+frontend/dist/
+frontend/node_modules/
+
+# === Coverage reports ===
+htmlcov/
+coverage.xml
+*.cover
+*.py,cover
+
+# === Test cache ===
+.pytest_cache/
+.tox/
+
+# === Misc ===
+*.swp
+Thumbs.db
