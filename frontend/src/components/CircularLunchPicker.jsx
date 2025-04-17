@@ -1,0 +1,184 @@
+import React, { useState, useEffect, useRef } from "react";
+import { CiCircleCheck } from "react-icons/ci";
+import {
+    Box,
+    Button,
+    Image,
+    useBreakpointValue,
+    Circle
+} from "@chakra-ui/react";
+
+const CircularLunchPicker = ({ foods }) => {
+    const BASE_URL = "http://127.0.0.1:5000";
+    const [isRolling, setIsRolling] = useState(false);
+    const [selectedIndex, setSelectedIndex] = useState(null);
+    const [confirmed, setConfirmed] = useState(false);
+    const [rollCount, setRollCount] = useState(0);
+    const intervalRef = useRef(null);
+    const imageSize = useBreakpointValue({ base: 120, md: 150 });
+    const containerSize = useBreakpointValue({ base: 300, md: 400 });
+    const handleMarkEaten = async () => {
+        const foodId = foods[selectedIndex].id;
+        try {
+          const res = await fetch(`http://127.0.0.1:5000/api/foods/${foodId}/eat`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+          });
+      
+          if (!res.ok) throw new Error("Failed to update food");
+      
+          console.log("Marked as eaten!");
+          setConfirmed(true);  // ✅ 确认模式
+        } catch (err) {
+          console.error("Error:", err);
+        }
+      };
+
+    const startRolling = () => {
+        setIsRolling(true);
+        setSelectedIndex(null);
+
+        intervalRef.current = setInterval(() => {
+            const randomIndex = Math.floor(Math.random() * foods.length);
+            setSelectedIndex(randomIndex);
+        }, 100);
+    };
+
+    const stopRolling = () => {
+        setIsRolling(false);
+        clearInterval(intervalRef.current);
+
+        const newCount = rollCount + 1;
+        setRollCount(newCount);
+
+        if (newCount >= 3 && !confirmed) {
+            setConfirmed(true);
+            console.warn("WHAT'S YOUR PROBLEM? JUST EAT THIS", foods[selectedIndex].name);
+        }
+    };
+
+    useEffect(() => {
+        return () => clearInterval(intervalRef.current);
+    }, []);
+
+    if (confirmed) {
+        return (
+            <Box
+                position="fixed"
+                top="0"
+                left="0"
+                w="100vw"
+                h="100vh"
+                bg="rgba(0, 0, 0, 0.7)"
+                zIndex={1100}
+                display="flex"
+                flexDirection="column"
+                alignItems="center"
+                justifyContent="center"
+                color="white"
+                textAlign="center"
+            >
+                <Image
+                    src={`${BASE_URL}${foods[selectedIndex].image_url}`}
+                    alt={foods[selectedIndex].name}
+                    maxW="300px"
+                    borderRadius="md"
+                    boxShadow="xl"
+                    mb={6}
+                />
+                <Box fontSize="4xl" fontWeight="bold">
+                    {rollCount >= 3
+                        ? `WHAT'S YOUR PROBLEM? JUST EAT THIS ${foods[selectedIndex].name}!`
+                        : `Enjoy the ${foods[selectedIndex].name}!`}
+                </Box>
+            </Box>
+        );
+    }
+
+    return (
+        <Circle
+            position="fixed"
+            top="50%"
+            left="50%"
+            transform="translate(-50%, -50%)"
+            zIndex={1000}
+            size={containerSize}
+            bg="white"
+            boxShadow="2xl"
+            p={6}
+            textAlign="center"
+            flexDirection="column"
+            justifyContent="center"
+            border="8px solid"
+            borderColor="teal.100"
+            bgImage="url('/images/bg-circle.jpg')"  // ✅ 加这行
+            bgSize="cover"                          // ✅ 背景图铺满
+            bgPosition="center"                    // ✅ 居中显示
+        >
+            <Box position="absolute" top="20px" left="0" right="0" textAlign="center">
+                <Button
+                    size="md"
+                    colorScheme="teal"
+                    onClick={isRolling ? stopRolling : startRolling}
+                    transition="all 0.3s ease-in-out"
+                    _hover={{
+                        transform: "scale(1.05)",
+                    }}
+                    _active={{
+                        transform: "scale(0.95)",
+                        bg: "teal.600",
+                    }}
+                >
+                    {isRolling ? "Stop" : "Start"}
+                </Button>
+            </Box>
+            <Box mt={20}>
+                <Box
+                    width={`${imageSize}px`}
+                    height={`${imageSize}px`}
+                    mb={6}
+                    display="flex"
+                    alignItems="center"
+                    justifyContent="center"
+                    overflow="hidden"  // 防止图片超出容器
+                    mt={10}
+                >
+                    {selectedIndex !== null && (
+                        <Image
+                            src={`${BASE_URL}${foods[selectedIndex].image_url}`}
+                            alt={foods[selectedIndex].name}
+                            maxW="100%"
+                            maxH="100%"
+                            objectFit="contain"  // 保持原图比例
+                        />
+                    )}
+                </Box>
+                <Box textAlign="center" mt={10}>
+                    {selectedIndex !== null && (
+                        <Box as="h3" fontSize="lg" fontWeight="bold" mb={2} color="blue.900">
+                            {foods[selectedIndex].name}
+                        </Box>
+                    )}
+                </Box>
+                <Box
+                    mt={2}
+                    display="flex"
+                    justifyContent="center"
+                    height="32px"  // ✅ 始终占位
+                >
+                    {selectedIndex !== null && !isRolling && (
+                        <Box
+                            cursor="pointer"
+                            _hover={{ color: "green.500" }}
+                            onClick={handleMarkEaten}
+                        >
+                            <CiCircleCheck size={28} />
+                        </Box>
+                    )}
+                </Box>
+            </Box>
+        </Circle>
+    );
+};
+
+export default CircularLunchPicker;

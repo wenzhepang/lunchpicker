@@ -7,6 +7,7 @@ class Food(db.Model):
     category = db.Column(db.String(20), nullable=False)         # 分类：breakfast/lunch/dinner/snack
     image_url = db.Column(db.String(200), nullable=False)       # 图片路径或链接
     liked = db.Column(db.Boolean, default=False)          # 是否收藏
+    times_eaten = db.Column(db.Integer, default=0)           # 被吃的次数
     created_at = db.Column(db.DateTime, default=datetime.now(timezone.utc))  # 添加时间
 
     def to_json(self):
@@ -16,6 +17,7 @@ class Food(db.Model):
             'category': self.category,
             'image_url': self.image_url,
             'liked': self.liked,
+            'times_eaten': self.times_eaten,
             'created_at': self.created_at.isoformat()
         }
 

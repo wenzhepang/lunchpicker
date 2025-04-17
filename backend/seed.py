@@ -1,41 +1,28 @@
 from app import app, db
 from models import Food
 from datetime import datetime, timezone
+import os
 
 with app.app_context():
     # 清空旧数据（如果需要）
     db.session.query(Food).delete()
 
-    food_items = [
-        Food(
-            name="Sushi",
-            category="dinner",
-            image_url="/images/sushi.png",
-            liked=True,
-            created_at=datetime(2024, 4, 10, 12, 30, tzinfo=timezone.utc)
-        ),
-        Food(
-            name="Burger",
-            category="lunch",
-            image_url="/images/burger.png",
-            liked=False,
-            created_at=datetime(2024, 4, 11, 14, 0, tzinfo=timezone.utc)
-        ),
-        Food(
-            name="Pancake",
-            category="breakfast",
-            image_url="/images/pancake.png",
-            liked=True,
-            created_at=datetime(2024, 4, 12, 8, 15, tzinfo=timezone.utc)
-        ),
-        Food(
-            name="Hotpot",
-            category="dinner",
-            image_url="/images/hotpot.png",
-            liked=False,
-            created_at=datetime(2024, 4, 13, 18, 45, tzinfo=timezone.utc)
-        )
-    ]
+    image_folder = os.path.join('static', 'images')
+    food_items = []
+
+    for filename in os.listdir(image_folder):
+        if filename.lower().endswith(('.png', '.jpg', '.jpeg')):
+            name = os.path.splitext(filename)[0].replace('-', ' ').title()  # e.g., fast-food -> Fast Food
+            image_url = f"/{image_folder}/{filename}"  # keep leading slash like previous examples
+            food_items.append(
+                Food(
+                    name=name,
+                    category="lunch",  # default category
+                    image_url=image_url,
+                    liked=False,
+                    created_at=datetime.now(timezone.utc)
+                )
+            )
 
     db.session.add_all(food_items)
     db.session.commit()
