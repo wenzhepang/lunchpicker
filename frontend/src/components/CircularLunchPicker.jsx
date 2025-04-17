@@ -7,9 +7,9 @@ import {
     useBreakpointValue,
     Circle
 } from "@chakra-ui/react";
+import { BASE_URL } from "@/App";
 
 const CircularLunchPicker = ({ foods }) => {
-    const BASE_URL = "http://127.0.0.1:5000";
     const [isRolling, setIsRolling] = useState(false);
     const [selectedIndex, setSelectedIndex] = useState(null);
     const [confirmed, setConfirmed] = useState(false);

@@ -1,9 +1,10 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Navbar from "./components/Navbar";
 import HomePage from "./pages/HomePage";
 import FoodManagement from "./pages/FoodManagement";
 import About from "./pages/About";
+
+export const BASE_URL = "http://127.0.0.1:5000"
 
 function App() {
   return (

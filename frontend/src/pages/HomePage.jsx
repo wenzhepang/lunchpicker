@@ -4,8 +4,8 @@ import { Box } from "@chakra-ui/react";
 import Navbar from "../components/Navbar";
 import CircularLunchPicker from "../components/CircularLunchPicker";
 import IntroOverlay from "@/components/IntroOverlay";
+import { BASE_URL } from "@/App";
 const HomePage = () => {
-    const BASE_URL = "http://127.0.0.1:5000";
     const containerRef = useRef(null);
     const requestRef = useRef();
     const previousTimeRef = useRef();

@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { Box, HStack, SimpleGrid, Wrap, WrapItem } from "@chakra-ui/react";
 import Navbar from "@/components/Navbar";
+import { BASE_URL } from "@/App";
 
 const FoodManagement = () => {
-  const BASE_URL = "http://127.0.0.1:5000";
   const [foods, setFoods] = useState([]);
 
   useEffect(() => {
