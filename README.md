@@ -4,7 +4,7 @@
 
 This is a simple full-stack web app built with **Flask (Python)** for the backend and **React** for the frontend. The app helps users decide *what to eat today* by providing random meal suggestions or listing available options.
 
-👉 **[Live Demo](https://cs732-assignment-wenzhepang.onrender.com/)** – Check out the deployed version (link in video or here if hosted)!
+👉 **[Live Demo](https://cs732-assignment-wenzhepang.onrender.com/)** – Check out the deployed version 
 
 ---
 
