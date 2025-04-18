@@ -20,7 +20,7 @@ const CircularLunchPicker = ({ foods }) => {
     const handleMarkEaten = async () => {
         const foodId = foods[selectedIndex].id;
         try {
-          const res = await fetch(`http://127.0.0.1:5000/api/foods/${foodId}/eat`, {
+          const res = await fetch(`${BASE_URL}/api/foods/${foodId}/eat`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
           });
@@ -118,16 +118,25 @@ const CircularLunchPicker = ({ foods }) => {
             <Box position="absolute" top="20px" left="0" right="0" textAlign="center">
                 <Button
                     size="md"
-                    colorScheme="teal"
-                    onClick={isRolling ? stopRolling : startRolling}
-                    transition="all 0.3s ease-in-out"
+                    // 奶油风按钮样式，和 Navbar 保持一致
+                    bg="#fff7e6"
+                    color="#7c6f57"
+                    fontWeight="bold"
+                    borderRadius="full"
+                    boxShadow="sm"
+                    transition="all 0.2s"
                     _hover={{
+                        bg: "#ffe7ba",
+                        color: "#bfa76a",
+                        boxShadow: "md",
                         transform: "scale(1.05)",
                     }}
                     _active={{
-                        transform: "scale(0.95)",
-                        bg: "teal.600",
+                        bg: "#ffe7ba",
+                        color: "#a68a5b",
+                        transform: "scale(0.97)",
                     }}
+                    onClick={isRolling ? stopRolling : startRolling}
                 >
                     {isRolling ? "Stop" : "Start"}
                 </Button>
@@ -140,8 +149,8 @@ const CircularLunchPicker = ({ foods }) => {
                     display="flex"
                     alignItems="center"
                     justifyContent="center"
-                    overflow="hidden"  // 防止图片超出容器
-                    mt={10}
+                    overflow="hidden"
+                    mt={{ base: 0, md: 10 }}
                 >
                     {selectedIndex !== null && (
                         <Image
@@ -149,11 +158,15 @@ const CircularLunchPicker = ({ foods }) => {
                             alt={foods[selectedIndex].name}
                             maxW="100%"
                             maxH="100%"
-                            objectFit="contain"  // 保持原图比例
+                            objectFit="contain"
                         />
                     )}
                 </Box>
-                <Box textAlign="center" mt={10}>
+                {/* ↓↓↓ 修改这里 ↓↓↓ */}
+                <Box
+                    textAlign="center"
+                    mt={{ base: 0, md: 10 }} // 小屏幕时更小的上边距，大屏幕保持原样
+                >
                     {selectedIndex !== null && (
                         <Box as="h3" fontSize="lg" fontWeight="bold" mb={2} color="blue.900">
                             {foods[selectedIndex].name}
@@ -161,10 +174,10 @@ const CircularLunchPicker = ({ foods }) => {
                     )}
                 </Box>
                 <Box
-                    mt={2}
+                    mt={{ base: 0, md: 2 }} // 小屏幕时更小的上边距
                     display="flex"
                     justifyContent="center"
-                    height="32px"  // ✅ 始终占位
+                    height="32px"
                 >
                     {selectedIndex !== null && !isRolling && (
                         <Box

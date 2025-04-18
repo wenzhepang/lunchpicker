@@ -4,7 +4,14 @@ import { FaLeaf, FaStar, FaUtensils, FaCog, FaInfoCircle } from "react-icons/fa"
 
 const Navbar = () => {
   return (
-    <Container maxW="1920px" px={4} bg="gray.100" boxShadow="md">
+    <Container
+      maxW="1920px"
+      px={4}
+      bgGradient="linear(to-r, #fffbe9, #f7efe5, #f3e9dd)"
+      boxShadow="md"
+      borderRadius="xl"
+      // mt={4}  // 去掉这一行
+    >
       <Flex
         justify="space-between"
         align="center"
@@ -20,11 +27,27 @@ const Navbar = () => {
         </Box>
 
         <HStack spacing={4} mt={{ base: 3, sm: 0 }}>
-          <Button 
+          <Button
             as={RouterLink}
             to="/"
             leftIcon={<FaUtensils />}
-            colorScheme="green"
+            bg="#fff7e6"
+            color="#7c6f57"
+            fontWeight="bold"
+            borderRadius="full"
+            boxShadow="sm"
+            _hover={{
+              bg: "#ffe7ba",
+              color: "#bfa76a",
+              boxShadow: "md",
+              transform: "scale(1.05)",
+            }}
+            _active={{
+              bg: "#ffe7ba",
+              color: "#a68a5b",
+              transform: "scale(0.97)",
+            }}
+            transition="all 0.2s"
           >
             Home
           </Button>
@@ -32,7 +55,23 @@ const Navbar = () => {
             as={RouterLink}
             to="/manage"
             leftIcon={<FaCog />}
-            colorScheme="green"
+            bg="#fff7e6"
+            color="#7c6f57"
+            fontWeight="bold"
+            borderRadius="full"
+            boxShadow="sm"
+            _hover={{
+              bg: "#ffe7ba",
+              color: "#bfa76a",
+              boxShadow: "md",
+              transform: "scale(1.05)",
+            }}
+            _active={{
+              bg: "#ffe7ba",
+              color: "#a68a5b",
+              transform: "scale(0.97)",
+            }}
+            transition="all 0.2s"
           >
             Food
           </Button>
@@ -40,7 +79,23 @@ const Navbar = () => {
             as={RouterLink}
             to="/about"
             leftIcon={<FaInfoCircle />}
-            colorScheme="green"
+            bg="#fff7e6"
+            color="#7c6f57"
+            fontWeight="bold"
+            borderRadius="full"
+            boxShadow="sm"
+            _hover={{
+              bg: "#ffe7ba",
+              color: "#bfa76a",
+              boxShadow: "md",
+              transform: "scale(1.05)",
+            }}
+            _active={{
+              bg: "#ffe7ba",
+              color: "#a68a5b",
+              transform: "scale(0.97)",
+            }}
+            transition="all 0.2s"
           >
             About
           </Button>
