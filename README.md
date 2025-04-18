@@ -29,8 +29,8 @@ This is a simple full-stack web app built with **Flask (Python)** for the backen
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/your-repo-name.git
-cd your-repo-name
+git clone https://github.com/UOA-CS732-S1-2025/cs732-assignment-wenzhepang.git
+cd cs732-assignment-wenzhepang
 ```
 
 ### 2. Backend Setup (Flask)
@@ -48,5 +48,5 @@ flask run                     # Starts Flask backend at http://localhost:5000
 ```bash
 cd frontend
 npm install                   # Installs dependencies
-npm run dev                   # Starts React development server at http://localhost:5173
+npm run dev                   # Starts React development server 
 ```
