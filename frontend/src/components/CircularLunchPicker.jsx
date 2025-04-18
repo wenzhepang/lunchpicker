@@ -28,7 +28,7 @@ const CircularLunchPicker = ({ foods }) => {
           if (!res.ok) throw new Error("Failed to update food");
       
           console.log("Marked as eaten!");
-          setConfirmed(true);  // ✅ 确认模式
+          setConfirmed(true); 
         } catch (err) {
           console.error("Error:", err);
         }
@@ -111,9 +111,9 @@ const CircularLunchPicker = ({ foods }) => {
             justifyContent="center"
             border="8px solid"
             borderColor="teal.100"
-            bgImage="url('/images/bg-circle.jpg')"  // ✅ 加这行
-            bgSize="cover"                          // ✅ 背景图铺满
-            bgPosition="center"                    // ✅ 居中显示
+            bgImage="url('/images/bg-circle.jpg')"  
+            bgSize="cover"                          
+            bgPosition="center"                  
         >
             <Box position="absolute" top="20px" left="0" right="0" textAlign="center">
                 <Button
@@ -162,10 +162,9 @@ const CircularLunchPicker = ({ foods }) => {
                         />
                     )}
                 </Box>
-                {/* ↓↓↓ 修改这里 ↓↓↓ */}
                 <Box
                     textAlign="center"
-                    mt={{ base: 0, md: 10 }} // 小屏幕时更小的上边距，大屏幕保持原样
+                    mt={{ base: 0, md: 10 }} 
                 >
                     {selectedIndex !== null && (
                         <Box as="h3" fontSize="lg" fontWeight="bold" mb={2} color="blue.900">
@@ -174,7 +173,7 @@ const CircularLunchPicker = ({ foods }) => {
                     )}
                 </Box>
                 <Box
-                    mt={{ base: 0, md: 2 }} // 小屏幕时更小的上边距
+                    mt={{ base: 0, md: 2 }}
                     display="flex"
                     justifyContent="center"
                     height="32px"

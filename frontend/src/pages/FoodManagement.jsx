@@ -25,21 +25,18 @@ const FoodManagement = () => {
     fetchFoods();
   }, []);
 
-  // 新增：根据 filter 过滤 foods
+
   const filteredFoods = foods
     .filter(food => {
-      // 关键词过滤
       const matchKeyword = food.name.toLowerCase().includes((filter.keyword || "").toLowerCase());
-      // 收藏过滤
       const matchFavorite = filter.favorites ? food.liked : true;
       return matchKeyword && matchFavorite;
     })
     .sort((a, b) => {
-      // 根据吃过次数排序
       if (filter.order === 'times_desc') {
         return b.times_eaten - a.times_eaten;
       }
-      return 0; // 不排序
+      return 0; 
     });
 
   const toggleFavorite = (foodId, currentStatus) => {
@@ -55,7 +52,6 @@ const FoodManagement = () => {
         return res.json();
       })
       .then(() => {
-        // 更新本地状态
         setFoods(foods.map(food => 
           food.id === foodId ? { ...food, liked: !currentStatus } : food
         ));
@@ -82,7 +78,6 @@ const FoodManagement = () => {
         return res.json();
       })
       .then(() => {
-        // 从本地状态中移除该食物
         setFoods(foods.filter(food => food.id !== foodId));
         toaster.create({
           title: "Delete Successful",

@@ -7,7 +7,7 @@ import { BASE_URL } from "@/App";
 const FoodFilter = ({ onFilterChange }) => {
   const [value, setValue] = useState("");
   const [showFavorites, setShowFavorites] = useState(false);
-  const [orderByTimes, setOrderByTimes] = useState(false); // 新增状态
+  const [orderByTimes, setOrderByTimes] = useState(false); 
 
   const handleChange = (e) => {
     setValue(e.target.value);
@@ -79,8 +79,8 @@ const FoodFilter = ({ onFilterChange }) => {
       </Button>
       <Button
         aria-label="Order by times eaten"
-        onClick={handleOrderToggle} // 使用新的处理函数
-        bg={orderByTimes ? "#ffe7ba" : "#fff7e6"} // 根据状态切换高亮
+        onClick={handleOrderToggle} 
+        bg={orderByTimes ? "#ffe7ba" : "#fff7e6"} 
         color={orderByTimes ? "#bfa76a" : "#7c6f57"}
         fontWeight="bold"
         borderRadius="full"
