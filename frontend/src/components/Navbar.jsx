@@ -10,7 +10,6 @@ const Navbar = () => {
       bgGradient="linear(to-r, #fffbe9, #f7efe5, #f3e9dd)"
       boxShadow="md"
       borderRadius="xl"
-      // mt={4}  // 去掉这一行
     >
       <Flex
         justify="space-between"

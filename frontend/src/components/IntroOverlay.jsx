@@ -65,16 +65,16 @@ const IntroOverlay = ({ onDismiss }) => {
         size="lg"
         colorScheme="teal"
         onClick={onDismiss}
-        transition="all 0.3s ease-in-out" // 保留平滑过渡效果
+        transition="all 0.3s ease-in-out" 
         _hover={{
-          bg: "teal.500", // 悬停时背景变亮（或保持 teal.500）
-          color: "white", // 悬停时文字变白
-          transform: "scale(1.1)", // 悬停时按钮放大
+          bg: "teal.500", 
+          color: "white", 
+          transform: "scale(1.1)", 
         }}
         _active={{
-          bg: "teal.700", // 点击时背景变暗
-          transform: "scale(0.9)", // 点击时按钮缩小
-          borderColor: "teal.800", // 可选：添加边框加深效果
+          bg: "teal.700", 
+          transform: "scale(0.9)", 
+          borderColor: "teal.800",
         }}
       >
         Get Started
