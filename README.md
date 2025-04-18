@@ -11,9 +11,7 @@ This is a simple full-stack web app built with **Flask (Python)** for the backen
 ## Features
 
 - Random food suggestions
-- Customizable food list (optional feature)
-- Frontend and backend connected via RESTful APIs
-- Lightweight, beginner-friendly tech stack
+
 
 ---
 
